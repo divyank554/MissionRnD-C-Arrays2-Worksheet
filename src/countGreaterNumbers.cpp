@@ -20,6 +20,47 @@ struct transaction {
 	char description[20];
 };
 
-int countGreaterNumbers(struct transaction *Arr, int len, char *date) {
-	return -1;
+int stringcmp(char *d1, char *d2)
+{
+	int i = 0;
+	int flag = 0;
+	while (d1[i] != '\0')
+	{
+		if (d1[i] == d2[i])
+			i++;
+		else
+		{
+			flag = 1;
+			break;
+		}
+	}
+	return flag;
+}
+
+int countGreaterNumbers(struct transaction *Arr, int len, char *date)
+{
+	int i = 0;
+	int result;
+	int count = 0;
+	int temp = len;
+	while (len != 0)
+	{
+		len--;
+		result = stringcmp(Arr[i].date, date);
+		if (result == 0)
+		{
+			count++;
+			temp = temp - 1 - i;
+		}
+
+		if (count >1)
+			return 0;
+
+		i++;
+	}
+
+	if (count == 1)
+		return temp;
+	else
+		return 0;
 }
