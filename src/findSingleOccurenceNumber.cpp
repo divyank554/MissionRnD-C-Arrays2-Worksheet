@@ -13,7 +13,10 @@ ERROR CASES: Return -1 for invalid inputs.
 NOTES:
 */
 
-int findSingleOccurenceNumber(int *A, int len) {
+int findSingleOccurenceNumber(int *A, int len) 
+{
+	if (A == '\0')
+		return -1;
 	int i, j, a;
 	for (i = 0; i < len; ++i)
 	{

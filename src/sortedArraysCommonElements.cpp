@@ -22,6 +22,41 @@ struct transaction {
 	char description[20];
 };
 
-struct transaction * sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen) {
-	return NULL;
+struct transaction * sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen) 
+{
+	if (A == NULL || B == NULL)
+		return NULL;
+
+	struct transaction *temp = (transaction *)malloc(sizeof(struct transaction) * 10);
+
+	int t = 0;
+	int i = 0, j = 0;
+	int count = 0;
+	while (i < ALen)
+	{
+		int k = 0;
+		while (k < BLen)
+		{
+			int flag = 0;
+			for (j = 0; A[i].date[j] != '\0'; j++)
+			{
+				if (A[i].date[j] != B[k].date[j])
+					flag = 1;
+			}
+
+			if (flag == 0)
+			{
+				count++;
+				temp[t] = A[i];
+				t++;
+				i++;
+			}
+			k++;
+		}
+		i++;
+	}
+	if (count == 0)
+		return NULL;
+
+	return temp;
 }
